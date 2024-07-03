@@ -23,15 +23,17 @@ public class tictaktoe extends JFrame{
         setLayout(new BorderLayout());
         
         
+        
+
         JPanel header=new JPanel(new FlowLayout()); 
 
-        JLabel label = new JLabel("Tic Tac Toe");
-        this.add(label);
+        // JLabel label = new JLabel("Tic Tac Toe");
+        // add(label);
 
-        JLabel label2 = new JLabel("Player 1: X");  
+        JLabel label2 = new JLabel("TURN : ");  
         header.add(label2);
 
-        JLabel label3 = new JLabel("Player 2: O");
+        JLabel label3 = new JLabel("X");
         header.add(label3);
 
         add(header, BorderLayout.NORTH);
@@ -47,9 +49,12 @@ public class tictaktoe extends JFrame{
                 JButton button = (JButton) e.getSource();
                 if(turn){
                     button.setText("X");
+                    label3.setText("O");
                 }else{
                     button.setText("O");
+                    label3.setText("X");
                 }
+
                 turn = !turn;
                 button.setEnabled(false);
                 check(buttons);
@@ -65,7 +70,20 @@ public class tictaktoe extends JFrame{
     }
 
 
-
+public void wins(String b1){ 
+    if(b1=="X" || b1.equals("X")){
+        player1++;
+    }else if (b1=="O" || b1.equals("O")){
+        player2++;
+    }
+   match();
+   
+    
+}
+public void match(){
+    matches=player1+player2;
+    System.out.println("Player X: " + player1 + " Player O: " + player2 + " Matches: " + matches);
+}
    
   
 
@@ -87,44 +105,54 @@ public class tictaktoe extends JFrame{
        // message dialog is displayed indicating which player has won (the text on the winning
        // buttons), and the `reset()` method is called to reset the game board.
         if(b1.equals(b2) && b2.equals(b3) && !b1.equals("")){
+            wins(b1);
             JOptionPane.showMessageDialog(this, b1 + " wins");
             reset(buttons);
 
 
         }
         if(b4.equals(b5) && b5.equals(b6) && !b4.equals("")){
+            wins(b4);
             JOptionPane.showMessageDialog(this, b4 + " wins");
             reset(buttons);
         }
         if(b7.equals(b8) && b8.equals(b9) && !b7.equals("")){
+            wins(b7);
             JOptionPane.showMessageDialog(this, b7 + " wins");
             reset(buttons);
         }
         if(b1.equals(b4) && b4.equals(b7) && !b1.equals("")){
+            wins(b1);
             JOptionPane.showMessageDialog(this, b1 + " wins");
             reset(buttons);
         }
         if(b2.equals(b5) && b5.equals(b8) && !b2.equals("")){
+            wins(b2);
             JOptionPane.showMessageDialog(this, b2 + " wins");
             reset(buttons);
         }
         if(b3.equals(b6) && b6.equals(b9) && !b3.equals("")){
+            wins(b3);
             JOptionPane.showMessageDialog(this, b3 + " wins");
             reset(buttons);
         }
         if(b1.equals(b5) && b5.equals(b9) && !b1.equals("")){
+            wins(b1);
             JOptionPane.showMessageDialog(this, b1 + " wins");
             reset(buttons);
         }
         if(b3.equals(b5) && b5.equals(b7) && !b3.equals("")){
+            wins(b3);
             JOptionPane.showMessageDialog(this, b3 + " wins");
             reset(buttons);
         }
         if(!b1.equals("") && !b2.equals("") && !b3.equals("") && !b4.equals("") && !b5.equals("") && !b6.equals("") && !b7.equals("") && !b8.equals("") && !b9.equals("")){
+            
             JOptionPane.showMessageDialog(this, "Draw");
+        
+
             reset(buttons);
         }
-
 
 
     }
